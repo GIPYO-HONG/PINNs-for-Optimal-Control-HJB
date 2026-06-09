@@ -23,9 +23,14 @@ def main():
 
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     model_path = OUTPUT_DIR / "model.eqx"
-    history_path = OUTPUT_DIR / "loss_history.npy"
+    history_path = OUTPUT_DIR / "loss_history.npz"
     eqx.tree_serialise_leaves(model_path, model)
-    np.save(history_path, history)
+    np.savez(
+        history_path,
+        pde=np.asarray(history["pde"]),
+        terminal=np.asarray(history["terminal"]),
+        total=np.asarray(history["total"]),
+    )
     print(f"\nSaved:\n - {model_path}\n - {history_path}")
 
 
