@@ -19,3 +19,11 @@ build/
 # 환경 설정
 .env
 .env.local
+
+tmp/
+
+nohup.out
+
+
+# 학습 결과물
+outputs/
